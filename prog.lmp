@@ -1,0 +1,30 @@
+dimension 3
+units lj
+boundary p p p
+atom_style atomic
+
+lattice sc 1
+region box block -5 5 -5 5 -5 5
+create_box 1 box
+create_atoms 1 box
+group re region box
+change_box all x delta -0.5 0.5 y delta -0.5 0.5 z delta -0.5 0.5 
+displace_atoms re move 0.5 0.5 0.5 
+mass 1 1.0
+
+pair_style lj/cut 5.5
+pair_coeff * * 1.0 1.0
+
+timestep 0.001
+
+velocity all create 0.1 80000
+ 
+fix 1_ all nve
+
+dump out_1 all atom 1 lammps_Ovito
+
+thermo 1
+
+run 100
+write_dump all custom positions_lammps x y z modify format float %20.15g 
+write_dump all custom forces_lammps fx fy fz modify format float %20.15g 
