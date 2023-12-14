@@ -51,6 +51,7 @@ y2 = np.array(y2)
 plt.scatter(x2,y2)
 plt.xlabel('iterition step')
 plt.ylabel('Kinetic Energy ()')
+plt.title('Kinetic Energy')
 plt.show()
 
 counter1 = 0
@@ -64,6 +65,7 @@ y = np.array(y)
 plt.scatter(x,y)
 plt.xlabel('iterition step')
 plt.ylabel('Energy ()')
+plt.title('Energy')
 plt.show()
 
 
@@ -92,6 +94,9 @@ def top(i):
         p = (w)
         y3.append(p)  
     plt.plot(te, y3, 'red' , linewidth = 2)
+    plt.title('Velocity destribution')
+    plt.xlabel('V/V_max')
+    plt.ylabel('Probability')
 
 hist_animation = animation.FuncAnimation(fig, top, interval = 1, cache_frame_data=False)
 plt.show()
